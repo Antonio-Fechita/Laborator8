@@ -1,5 +1,6 @@
 package com.example.lab8javafx.DataBase;
 
+import com.example.lab8javafx.Entities.CityEntity;
 import com.example.lab8javafx.Entities.ContinentEntity;
 import com.example.lab8javafx.Entities.CountryEntity;
 
@@ -14,6 +15,11 @@ public class DataBase {
     public DataBase() throws SQLException {
         String address = "jdbc:postgresql://localhost:5432/JavaLab8";
         connection = DriverManager.getConnection(address,"postgres","Zeus1234");
+    }
+
+    public void emptyTableCities() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute("truncate table cities cascade");
     }
 
     public void emptyTableCountries() throws SQLException {
@@ -41,7 +47,23 @@ public class DataBase {
         return countries;
     }
 
+    public List<CityEntity> getCities() throws SQLException {
+        List<CityEntity> cities = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet citiesSet = statement.executeQuery("select * from cities");
+        while (citiesSet.next()){
+            CountryEntity country = getCountryById(citiesSet.getInt("country_id"));
+            String name = citiesSet.getString("name");
+            boolean capital = citiesSet.getBoolean("capital");
+            double latitude = citiesSet.getDouble("latitude");
+            double longitude = citiesSet.getDouble("longitude");
 
+            cities.add(new CityEntity(country,name,capital,latitude,longitude));
+        }
+
+
+        return cities;
+    }
 
     public List<ContinentEntity> getContinents() throws SQLException {
         List<ContinentEntity> continents = new ArrayList<>();
@@ -78,6 +100,17 @@ public class DataBase {
         return maxId + 1;
     }
 
+    public long getIdForCity() throws SQLException {
+        Statement statement = connection.createStatement();
+        int maxId = 0;
+        ResultSet resultSet = statement.executeQuery("select max(id) as \"max\" from cities");
+        if(resultSet.next()){
+            maxId = resultSet.getInt("max");
+        }
+        System.out.println("returned id for city: " + (maxId + 1));
+        return maxId + 1;
+    }
+
 
     public void addContinent(ContinentEntity continent) throws SQLException {
         Statement statement = connection.createStatement();
@@ -98,12 +131,30 @@ public class DataBase {
 
         Statement statement = connection.createStatement();
         statement.execute("insert into countries (id,name,code,continent_id) values (" + getIdForCountry() + ", \'" + country.getName() + "\', \'" + country.getCode() + "\', " + continentId + ")");
-
-
-
     }
 
-    public void setCountries(List<CountryEntity> countries) throws SQLException { //TODO
+    public void addCity(CityEntity city) throws SQLException {
+        CountryEntity countryOfCity = city.getCountry();
+
+        if(getCountryByName(countryOfCity.getName())==null){
+            addCountry(countryOfCity);
+        }
+        int countryId;
+        Statement countryIdStatement = connection.createStatement();
+        ResultSet resultSet =  countryIdStatement.executeQuery("select id from countries where name = \'" + countryOfCity.getName() + "\'");
+        resultSet.next();
+        countryId = resultSet.getInt("id");
+
+        Statement statement = connection.createStatement();
+        int capitalBit;
+        if(city.isCapital())
+            capitalBit = 1;
+        else
+            capitalBit = 0;
+        statement.execute("insert into cities (id,name,capital,latitude,longitude,country_id) values (" + getIdForCity() + ", \'" + city.getName() + "\', \'" + capitalBit + "\', " + city.getLatitude() + ", " + city.getLongitude() + ", " + countryId + ")");
+    }
+
+    public void setCountries(List<CountryEntity> countries) throws SQLException {
         emptyTableCountries();
         countries.forEach(countryEntity -> {
             try {
@@ -115,7 +166,19 @@ public class DataBase {
 
     }
 
-    public void setContinents(List<ContinentEntity> continents) throws SQLException {//TODO
+    public void setCities(List<CityEntity> cities) throws SQLException {
+        emptyTableCountries();
+        cities.forEach(cityEntity -> {
+            try {
+                addCity(cityEntity);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    public void setContinents(List<ContinentEntity> continents) throws SQLException {
         emptyTableContinents();
         continents.forEach(continentEntity -> {
             try {
@@ -140,6 +203,21 @@ public class DataBase {
         return country;
     }
 
+    public CityEntity getCityById(long id) throws SQLException {
+        Statement statement = connection.createStatement();
+        CityEntity city = null;
+        ResultSet resultSet = statement.executeQuery("select * from cities where id = " + id);
+        if(resultSet.next()){
+            CountryEntity country = getCountryById(resultSet.getInt("country_id"));
+            String name = resultSet.getString("name");
+            boolean capital = resultSet.getBoolean("capital");
+            double latitude = resultSet.getDouble("latitude");
+            double longitude = resultSet.getDouble("longitude");
+            city = new CityEntity(country,name,capital,latitude,longitude);
+        }
+        return city;
+    }
+
     public CountryEntity getCountryByName(String name) throws SQLException {
         Statement statement = connection.createStatement();
         CountryEntity country = null;
@@ -151,6 +229,20 @@ public class DataBase {
             country = new CountryEntity(countryCode,countryName,continent);
         }
         return country;
+    }
+
+    public CityEntity getCityByName(String name) throws SQLException {
+        Statement statement = connection.createStatement();
+        CityEntity city = null;
+        ResultSet resultSet = statement.executeQuery("select * from cities where name = \'" + name + "\'");
+        if(resultSet.next()){
+            CountryEntity country = getCountryById(resultSet.getInt("country_id"));
+            boolean capital = resultSet.getBoolean("capital");
+            double latitude = resultSet.getDouble("latitude");
+            double longitude = resultSet.getDouble("longitude");
+            city = new CityEntity(country,name,capital,latitude,longitude);
+        }
+        return city;
     }
 
     public ContinentEntity getContinentById(long id) throws SQLException {

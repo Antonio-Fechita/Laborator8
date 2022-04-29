@@ -5,6 +5,7 @@ import com.example.lab8javafx.Entities.ContinentEntity;
 import com.example.lab8javafx.DataBase.Singleton;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ContinentDAO {
 
@@ -28,5 +29,10 @@ public class ContinentDAO {
     public void emptyTable() throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         dataBase.emptyTableContinents();
+    }
+
+    public List<ContinentEntity> getAll() throws SQLException {
+        DataBase dataBase = Singleton.getInstance();
+        return dataBase.getContinents();
     }
 }

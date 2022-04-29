@@ -1,11 +1,12 @@
 package com.example.lab8javafx.DAO;
 
 import com.example.lab8javafx.DataBase.DataBase;
+import com.example.lab8javafx.DataBase.Singleton;
 import com.example.lab8javafx.Entities.ContinentEntity;
 import com.example.lab8javafx.Entities.CountryEntity;
-import com.example.lab8javafx.DataBase.Singleton;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class CountryDAO {
 
@@ -30,6 +31,11 @@ public class CountryDAO {
     public void emptyTable() throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         dataBase.emptyTableCountries();
+    }
+
+    public List<CountryEntity> getAll() throws SQLException {
+        DataBase dataBase = Singleton.getInstance();
+        return dataBase.getCountries();
     }
 
 }

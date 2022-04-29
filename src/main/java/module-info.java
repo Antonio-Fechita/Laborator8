@@ -12,6 +12,6 @@ module com.example.lab8javafx {
     opens com.example.lab8javafx.DAO to javafx.fxml;
     exports com.example.lab8javafx.DataBase;
     opens com.example.lab8javafx.DataBase to javafx.fxml;
-    exports com.example.lab8javafx.ToDeleteLater;
-    opens com.example.lab8javafx.ToDeleteLater to javafx.fxml;
+    exports com.example.lab8javafx.Drawing;
+    opens com.example.lab8javafx.Drawing to javafx.fxml;
 }
