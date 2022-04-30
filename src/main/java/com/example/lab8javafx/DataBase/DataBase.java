@@ -85,7 +85,6 @@ public class DataBase {
         if(resultSet.next()){
             maxId = resultSet.getInt("max");
         }
-        System.out.println("returned id for country: " + (maxId + 1));
         return maxId + 1;
     }
 
@@ -96,7 +95,6 @@ public class DataBase {
         if(resultSet.next()){
             maxId = resultSet.getInt("max");
         }
-        System.out.println("returned id for continent: " + (maxId + 1));
         return maxId + 1;
     }
 
@@ -107,7 +105,6 @@ public class DataBase {
         if(resultSet.next()){
             maxId = resultSet.getInt("max");
         }
-        System.out.println("returned id for city: " + (maxId + 1));
         return maxId + 1;
     }
 

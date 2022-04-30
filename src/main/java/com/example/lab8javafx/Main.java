@@ -1,5 +1,8 @@
 package com.example.lab8javafx;
 
+import com.example.lab8javafx.DAO.CityDAO;
+import com.example.lab8javafx.DAO.ContinentDAO;
+import com.example.lab8javafx.DAO.CountryDAO;
 import com.example.lab8javafx.generators.RandomCityGenerator;
 
 import java.sql.SQLException;
@@ -9,6 +12,9 @@ public class Main {
 
     public static void main(String[] args) throws SQLException
     {
+        CityDAO.emptyTable();
+        CountryDAO.emptyTable();
+        ContinentDAO.emptyTable();
         //RealWorldGetter.importRealCities();
         RandomCityGenerator.generateRandom();
 

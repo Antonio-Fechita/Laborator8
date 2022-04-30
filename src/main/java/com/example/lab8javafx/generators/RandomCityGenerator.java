@@ -1,5 +1,6 @@
 package com.example.lab8javafx.generators;
 
+import com.example.lab8javafx.DAO.CityDAO;
 import com.example.lab8javafx.Entities.CityEntity;
 import com.example.lab8javafx.Entities.ContinentEntity;
 import com.example.lab8javafx.Entities.CountryEntity;
@@ -8,6 +9,7 @@ import com.example.lab8javafx.graphtheory.Edge;
 import com.example.lab8javafx.graphtheory.Node;
 import com.github.javafaker.Faker;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -48,7 +50,7 @@ public class RandomCityGenerator
 
             int randContinentIndex = rand.nextInt(CONTINENT_NUMBER);
 
-            CountryEntity newCountry = new CountryEntity(faker.country().countryCode2(), "Country_" + countryIndex, continents.get(randContinentIndex));
+            CountryEntity newCountry = new CountryEntity("c_" + (countryIndex + 1), "Country_" + countryIndex, continents.get(randContinentIndex));
 
             countries.add( newCountry );
 
@@ -131,14 +133,14 @@ public class RandomCityGenerator
 
         CliqueFinder.findCliques( nodes );
 
-        /*for (CityEntity city: cities)
+        for (CityEntity city: cities)
         {
             try {
                 CityDAO.addCity(city);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 
     public static void addCity(CityEntity city)

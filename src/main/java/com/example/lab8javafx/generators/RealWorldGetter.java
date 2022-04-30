@@ -21,17 +21,27 @@ public class RealWorldGetter
 
             String line;
 
+            line = reader.readLine();
+            int nullCounter = 0;
             while ( (line = reader.readLine()) != null )
             {
+
                 String[] lineBreakdown = line.split(",");
 
-                CountryEntity country = new CountryEntity( lineBreakdown[4] , lineBreakdown[0],new ContinentEntity(lineBreakdown[5]));
+                String countryCode = lineBreakdown[4];
+
+                if(countryCode.equals("NULL")){
+                    countryCode = countryCode + nullCounter;
+                    nullCounter++;
+                }
+                                                                                             //To fix later
+                CountryEntity country = new CountryEntity( countryCode , lineBreakdown[0].substring(0,Math.min(29, lineBreakdown[0].length())),new ContinentEntity(lineBreakdown[5]));
 
                 double latitude = Double.parseDouble(lineBreakdown[2]);
 
                 double longitude = Double.parseDouble(lineBreakdown[3]);
-
-                CityDAO.createCity( lineBreakdown[1], true, latitude, longitude, country );
+                                                    //to fix later
+                CityDAO.createCity( lineBreakdown[1].substring(0,Math.min(29, lineBreakdown[1].length())), true, latitude, longitude, country );
             }
         }
         catch (FileNotFoundException e) {

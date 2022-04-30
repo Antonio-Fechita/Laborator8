@@ -15,7 +15,7 @@ American Samoa,Pago Pago,-14.266666666666667,-170.700000,AS,Australia
 Andorra,Andorra la Vella,42.5,1.516667,AD,Europe
 Angola,Luanda,-8.833333333333334,13.216667,AO,Africa
 Anguilla,The Valley,18.216666666666665,-63.050000,AI,North America
-Antigua and Barbuda,Saint John's,17.116666666666667,-61.850000,AG,North America
+Antigua and Barbuda,Saint Johns,17.116666666666667,-61.850000,AG,North America
 Argentina,Buenos Aires,-34.583333333333336,-58.666667,AR,South America
 Armenia,Yerevan,40.166666666666664,44.500000,AM,Europe
 Aruba,Oranjestad,12.516666666666667,-70.033333,AW,North America
@@ -48,7 +48,7 @@ Canada,Ottawa,45.416666666666664,-75.700000,CA,Central America
 Cape Verde,Praia,14.916666666666666,-23.516667,CV,Africa
 Cayman Islands,George Town,19.3,-81.383333,KY,North America
 Central African Republic,Bangui,4.366666666666666,18.583333,CF,Africa
-Chad,N'Djamena,12.1,15.033333,TD,Africa
+Chad,NDjamena,12.1,15.033333,TD,Africa
 Chile,Santiago,-33.45,-70.666667,CL,South America
 China,Beijing,39.916666666666664,116.383333,CN,Asia
 Christmas Island,The Settlement,-10.416666666666666,105.716667,CX,Australia
@@ -59,7 +59,7 @@ Democratic Republic of the Congo,Kinshasa,-4.316666666666666,15.300000,CD,Africa
 Republic of Congo,Brazzaville,-4.25,15.283333,CG,Africa
 Cook Islands,Avarua,-21.2,-159.766667,CK,Australia
 Costa Rica,San Jose,9.933333333333334,-84.083333,CR,Central America
-Cote d'Ivoire,Yamoussoukro,6.816666666666666,-5.266667,CI,Africa
+Cote dIvoire,Yamoussoukro,6.816666666666666,-5.266667,CI,Africa
 Croatia,Zagreb,45.8,16.000000,HR,Europe
 Cuba,Havana,23.116666666666667,-82.350000,CU,North America
 Curaçao,Willemstad,12.1,-68.916667,CW,North America
@@ -90,7 +90,7 @@ Ghana,Accra,5.55,-0.216667,GH,Africa
 Gibraltar,Gibraltar,36.13333333333333,-5.350000,GI,Europe
 Greece,Athens,37.983333333333334,23.733333,GR,Europe
 Greenland,Nuuk,64.18333333333334,-51.750000,GL,Central America
-Grenada,Saint George's,12.05,-61.750000,GD,North America
+Grenada,Saint Georges,12.05,-61.750000,GD,North America
 Guam,Hagatna,13.466666666666667,144.733333,GU,Australia
 Guatemala,Guatemala City,14.616666666666667,-90.516667,GT,Central America
 Guernsey,Saint Peter Port,49.45,-2.533333,GG,Europe
@@ -108,7 +108,7 @@ Iran,Tehran,35.7,51.416667,IR,Asia
 Iraq,Baghdad,33.333333333333336,44.400000,IQ,Asia
 Ireland,Dublin,53.31666666666667,-6.233333,IE,Europe
 Isle of Man,Douglas,54.15,-4.483333,IM,Europe
-Israel,Jerusalem,31.766666666666666,35.233333,IL,Asia
+Israel,Jierusalem,31.766666666666666,35.233333,IL,Asia
 Italy,Rome,41.9,12.483333,IT,Europe
 Jamaica,Kingston,18,-76.800000,JM,North America
 Japan,Tokyo,35.68333333333333,139.750000,JP,Asia
@@ -159,7 +159,7 @@ Nicaragua,Managua,12.133333333333333,-86.250000,NI,Central America
 Niger,Niamey,13.516666666666667,2.116667,NE,Africa
 Nigeria,Abuja,9.083333333333334,7.533333,NG,Africa
 Niue,Alofi,-19.016666666666666,-169.916667,NU,Australia
-Norfolk Island,Kingston,-29.05,167.966667,NF,Australia
+Norfolk Island,Kingston2,-29.05,167.966667,NF,Australia
 Northern Mariana Islands,Saipan,15.2,145.750000,MP,Australia
 Norway,Oslo,59.916666666666664,10.750000,NO,Europe
 Oman,Muscat,23.616666666666667,58.583333,OM,Asia
@@ -215,7 +215,7 @@ Tanzania,Dar es Salaam,-6.8,39.283333,TZ,Africa
 Thailand,Bangkok,13.75,100.516667,TH,Asia
 Timor-Leste,Dili,-8.583333333333334,125.600000,TL,Asia
 Togo,Lome,6.116666666666666,1.216667,TG,Africa
-Tonga,Nuku'alofa,-21.133333333333333,-175.200000,TO,Australia
+Tonga,Nukualofa,-21.133333333333333,-175.200000,TO,Australia
 Trinidad and Tobago,Port of Spain,10.65,-61.516667,TT,North America
 Tunisia,Tunis,36.8,10.183333,TN,Africa
 Turkey,Ankara,39.93333333333333,32.866667,TR,Europe
@@ -237,10 +237,10 @@ Wallis and Futuna,Mata-Utu,-13.95,-171.933333,WF,Australia
 Yemen,Sanaa,15.35,44.200000,YE,Asia
 Zambia,Lusaka,-15.416666666666666,28.283333,ZM,Africa
 Zimbabwe,Harare,-17.816666666666666,31.033333,ZW,Africa
-US Minor Outlying Islands,Washington,38.883333,-77.000000,UM,Australia
-Antarctica,N/A,0,0.000000,AQ,Antarctica
+US Minor Outlying Islands,Washingt0n,38.883333,-77.000000,UM,Australia
+Antarctica,N/A1,0,0.000000,AQ,Antarctica
 Northern Cyprus,North Nicosia,35.183333,33.366667,NULL,Europe
-Hong Kong,N/A,0,0.000000,HK,Asia
-Heard Island and McDonald Islands,N/A,0,0.000000,HM,Antarctica
+Hong Kong,N/A2,0,0.000000,HK,Asia
+Heard Island and McDonald Islands,N/A3,0,0.000000,HM,Antarctica
 British Indian Ocean Territory,Diego Garcia,-7.3,72.400000,IO,Africa
-Macau,N/A,0,0.000000,MO,Asia
+Macau,N/A4,0,0.000000,MO,Asia
