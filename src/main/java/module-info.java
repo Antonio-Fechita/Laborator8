@@ -2,6 +2,8 @@ module com.example.lab8javafx {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.jgrapht.core;
+    requires javafaker;
 
 
     opens com.example.lab8javafx to javafx.fxml;
