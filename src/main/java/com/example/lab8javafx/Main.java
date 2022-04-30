@@ -1,36 +1,36 @@
 package com.example.lab8javafx;
 
-import com.example.lab8javafx.DAO.CityDAO;
-import com.example.lab8javafx.DAO.ContinentDAO;
-import com.example.lab8javafx.DAO.CountryDAO;
+import com.example.lab8javafx.generators.RandomCityGenerator;
 
 import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
-        CityDAO cityDAO = new CityDAO();
-        CountryDAO countryDAO = new CountryDAO();
-        ContinentDAO continentDAO = new ContinentDAO();
+    public static void main(String[] args) throws SQLException
+    {
+        //RealWorldGetter.importRealCities();
+        RandomCityGenerator.generateRandom();
 
-        cityDAO.emptyTable();
-        countryDAO.emptyTable();
-        continentDAO.emptyTable();
+        /*
+        CityDAO.emptyTable();
+        CountryDAO.emptyTable();
+        ContinentDAO.emptyTable();
 
-        continentDAO.createContinent("Europa");
-        continentDAO.createContinent("Asia");
-        continentDAO.createContinent("Africa");
-        continentDAO.createContinent("Australia");
-        continentDAO.createContinent("America de Nord");
-        continentDAO.createContinent("America de Sud");
+        ContinentDAO.createContinent("Europa");
+        ContinentDAO.createContinent("Asia");
+        ContinentDAO.createContinent("Africa");
+        ContinentDAO.createContinent("Australia");
+        ContinentDAO.createContinent("America de Nord");
+        ContinentDAO.createContinent("America de Sud");
 
-        countryDAO.createCountry("ja","Japonia",continentDAO.findByName("Asia"));
-        countryDAO.createCountry("ro","Romania",continentDAO.findByName("Europa"));
-        countryDAO.createCountry("ni","Nigeria",continentDAO.findByName("Africa"));
+        CountryDAO.createCountry("ja","Japonia",ContinentDAO.findByName("Asia"));
+        CountryDAO.createCountry("ro","Romania",ContinentDAO.findByName("Europa"));
+        CountryDAO.createCountry("ni","Nigeria",ContinentDAO.findByName("Africa"));
 
-        cityDAO.createCity("Abuja",true,9.066667,7.483333,countryDAO.findByName("Nigeria"));
-        cityDAO.createCity("Iasi",false,47.151726,27.587914,countryDAO.findByName("Romania"));
-        cityDAO.createCity("Tokyo",true,35.652832,139.839478,countryDAO.findByName("Japonia"));
+        CityDAO.createCity("Abuja",true,9.066667,7.483333,CountryDAO.findByName("Nigeria"));
+        CityDAO.createCity("Iasi",false,47.151726,27.587914,CountryDAO.findByName("Romania"));
+        CityDAO.createCity("Tokyo",true,35.652832,139.839478,CountryDAO.findByName("Japonia"));
+        */
 
 
 

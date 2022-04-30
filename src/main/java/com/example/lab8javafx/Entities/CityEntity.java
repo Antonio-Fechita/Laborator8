@@ -1,13 +1,17 @@
 package com.example.lab8javafx.Entities;
 
+import com.example.lab8javafx.graphtheory.Node;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class CityEntity {
+public class CityEntity implements Node {
     CountryEntity country;
     String name;
     boolean capital;
     double latitude;
     double longitude;
+    ArrayList<CityEntity> sisters = new ArrayList<>();
 
     public CityEntity(CountryEntity country, String name, boolean capital, double latitude, double longitude) {
         this.country = country;
@@ -79,5 +83,29 @@ public class CityEntity {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+
+    @Override
+    public String getNodeIdentifier() {
+        return name;
+    }
+
+    @Override
+    public ArrayList<Node> getNeighbours()
+    {
+        ArrayList<Node> nodes = new ArrayList<>();
+
+        for (CityEntity cityEntity: sisters)
+        {
+            nodes.add(cityEntity);
+        }
+
+        return nodes;
+    }
+
+    public void addSister(CityEntity newSister)
+    {
+        sisters.add(newSister);
     }
 }

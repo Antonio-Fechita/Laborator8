@@ -9,29 +9,29 @@ import java.util.List;
 
 public class ContinentDAO {
 
-    public void createContinent(String name) throws SQLException {
+    public static void createContinent(String name) throws SQLException {
         DataBase dataBase = Singleton.getInstance();
 
         ContinentEntity continent = new ContinentEntity(name);
         dataBase.addContinent(continent);
     }
 
-    public ContinentEntity findById(long id) throws SQLException {
+    public static ContinentEntity findById(long id) throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         return dataBase.getContinentById(id);
     }
 
-    public ContinentEntity findByName(String name) throws SQLException {
+    public static ContinentEntity findByName(String name) throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         return dataBase.getContinentByName(name);
     }
 
-    public void emptyTable() throws SQLException {
+    public static void emptyTable() throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         dataBase.emptyTableContinents();
     }
 
-    public List<ContinentEntity> getAll() throws SQLException {
+    public static List<ContinentEntity> getAll() throws SQLException {
         DataBase dataBase = Singleton.getInstance();
         return dataBase.getContinents();
     }
