@@ -3,6 +3,7 @@ package com.example.lab8javafx.generators;
 import com.example.lab8javafx.Entities.CityEntity;
 import com.example.lab8javafx.Entities.CountryEntity;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,7 +30,11 @@ public class RunnableCityCreator implements Runnable
 
             CityEntity newCity = new CityEntity( countries.get(randCountryIndex), "City_" + (generatedCity + generatedCityIndex), false, 0, 0 );
 
-            RandomCityGenerator.addCity(newCity);
+            try {
+                RandomCityGenerator.addCity(newCity);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

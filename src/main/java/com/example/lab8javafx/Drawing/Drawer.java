@@ -34,6 +34,7 @@ public class Drawer extends Application {
     private Circle secondSelectedCircle;
     private Line distanceLine = new Line();
     private Text distanceText = new Text();
+    private Pane layout = new Pane();
 
     public void setCities(List<CityEntity> cities) {
         this.cities = cities;
@@ -43,7 +44,6 @@ public class Drawer extends Application {
     public void start(Stage stage) throws IOException, SQLException {
         setCities(new CityDAO().getAll());
 
-        Pane layout = new Pane();
         double height = 993;
         double width = 1280;
         ImageView imageView = new ImageView();
@@ -52,7 +52,7 @@ public class Drawer extends Application {
         layout.getChildren().add(imageView);
         layout.getChildren().add(distanceLine);
         layout.getChildren().add(distanceText);
-        drawCircles(layout, width, height);
+        drawCircles(width, height);
 
 
         Scene scene = new Scene(layout, width, height);
@@ -62,7 +62,7 @@ public class Drawer extends Application {
         stage.show();
     }
 
-    public void drawCircles(Pane layout, double width, double height) {
+    public void drawCircles(double width, double height) {
         Projection projection = new Projection(width, height);
 
         for (CityEntity city : cities) {
@@ -84,13 +84,13 @@ public class Drawer extends Application {
             circle.setOnMouseEntered(mouseEvent -> onCircleEntered(circle));
             circle.setOnMouseExited(mouseEvent -> onCircleExited(circle));
             circle.setOnMouseClicked(mouseEvent -> onCircleClicked(circle));
-            getCityLabelText(city, circle, layout);
+            getCityLabelText(city, circle);
 
             layout.getChildren().add(circle);
         }
     }
 
-    private void getCityLabelText(CityEntity city, Circle circle, Pane layout) {
+    private void getCityLabelText(CityEntity city, Circle circle) {
         Text label = new Text(city.getName() + "\nlatitude: " + city.getLatitude() + "\n longitude: " + city.getLongitude());
         label.setFont(Font.font(null, FontWeight.BOLD, 15));
         label.setFill(Color.WHITE);
@@ -105,6 +105,7 @@ public class Drawer extends Application {
     private void onCircleEntered(Circle circle) {
         Text label = circleCityMap.get(circle).getSecond();
         label.setVisible(true);
+        label.toFront();
 
         if (!circle.equals(firstSelectedCircle) && !circle.equals(secondSelectedCircle)) {
             circle.setFill(Color.GREEN);
@@ -155,15 +156,19 @@ public class Drawer extends Application {
         distanceLine.setStrokeWidth(5);
         distanceLine.setStroke(Color.CYAN);
         distanceLine.setVisible(true);
+        distanceLine.toFront();
+        firstSelectedCircle.toFront();
+        secondSelectedCircle.toFront();
 
         CityEntity firstCity = circleCityMap.get(firstSelectedCircle).getFirst();
         CityEntity secondCity = circleCityMap.get(secondSelectedCircle).getFirst();
         distanceText.setText(Distance.distance(firstCity, secondCity) + " KM");
         distanceText.setX((distanceLine.getStartX() + distanceLine.getEndX())/2 + 15);
         distanceText.setY((distanceLine.getStartY() + distanceLine.getEndY())/2 + 15);
-        distanceText.setFont(Font.font(null, FontWeight.BOLD, 20));
-        distanceText.setFill(Color.RED);
+        distanceText.setFont(Font.font(null, FontWeight.BOLD, 25));
+        distanceText.setFill(Color.AQUAMARINE);
         distanceText.setVisible(true);
+        distanceText.toFront();
     }
 
     private void drawSelectedCircle(Circle circle) {

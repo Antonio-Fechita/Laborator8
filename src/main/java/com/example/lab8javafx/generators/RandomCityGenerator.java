@@ -29,8 +29,7 @@ public class RandomCityGenerator
 
     static volatile ArrayList<CityEntity> cities = new ArrayList<>();
 
-    public static void generateRandom()
-    {
+    public static void generateRandom() throws SQLException {
         Faker faker = new Faker();
 
         Random rand = new Random();
@@ -56,7 +55,8 @@ public class RandomCityGenerator
 
             CityEntity newCapital = new CityEntity( newCountry, "CapitalCity_" + countryIndex, true, 0, 0);
 
-            cities.add(newCapital);
+            addCity(newCapital);
+//            cities.add(newCapital);
         }
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -131,20 +131,15 @@ public class RandomCityGenerator
 
         nodes.addAll( cities );
 
+        for (CityEntity city : cities) {
+            CityDAO.addCity(city);
+        }
+
         CliqueFinder.findCliques( nodes );
 
-        for (CityEntity city: cities)
-        {
-            try {
-                CityDAO.addCity(city);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
-    public static void addCity(CityEntity city)
-    {
+    public static void addCity(CityEntity city) throws SQLException {
         cities.add(city);
     }
 }
